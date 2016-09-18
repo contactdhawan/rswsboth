@@ -4,13 +4,13 @@
 	xmlns:cxf="http://cxf.apache.org/core" xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
 	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
-	
+
 	<jaxws:server id="jaxwsServer123" address="/hellows">
 		<jaxws:serviceBean>
-			<bean class="sf.ecrm.firstws.firstws_svc.App"/>
+			<bean class="sf.ecrm.firstws.firstws_svc.App" />
 		</jaxws:serviceBean>
 	</jaxws:server>
-	
+
 	<jaxrs:server id="jaxrsserverid" address="/hellorest">
 		<jaxrs:providers>
 			<ref bean="jsonprovider" />
@@ -20,6 +20,11 @@
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 	<bean id="jsonprovider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
-	 
-	 <!-- <bean id="AppWSClass" class="sf.ecrm.firstws.firstws_svc.App" /> -->
+	<cxf:bus>
+		<cxf:features>
+			<cxf:logging />
+		</cxf:features>
+	</cxf:bus>
+
+	<!-- <bean id="AppWSClass" class="sf.ecrm.firstws.firstws_svc.App" /> -->
 </beans>
